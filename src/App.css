@@ -26,7 +26,7 @@
 html {
   height: 100vh;
   background-image: url('static/scott-webb-256976-unsplash.jpg');
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
