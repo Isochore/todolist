@@ -1,0 +1,95 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+html {
+  height: 100vh;
+  background-image: url('static/scott-webb-256976-unsplash.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+body {
+  margin-bottom: 50px;
+}
+
+.container, body {
+  background-color: rgba(0, 0, 0, 0)
+}
+
+.list {
+  max-height: 80%;
+  margin-top: 30px;
+  overflow: auto;
+}
+
+.list > ul > li {
+  display: flex;
+  justify-content: space-between;
+  /* min-width: 300px; */
+  animation-duration: 0.8s;
+  animation-name: item;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes item {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 300px;
+  }
+}
+
+
+.list > ul > li:hover {
+  transition-duration: 0.5s;
+  background-color: rgb(236, 236, 236);;
+}
+
+.list > ul > li > button {
+  padding-left: 20px;
+}
+
+form {
+  max-width: 400px;
+}
+
+button, input {
+  /* border-radius: 0px !important; */
+}
+
+input {
+  border-radius: 5px 0 0 5px !important;
+}
+
+.btn-danger {
+  border-radius: 0 5px 5px 0;
+}
+
+.btn-dark {
+  border-radius: 0 0 0 0;
+}
