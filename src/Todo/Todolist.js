@@ -34,14 +34,18 @@ class Todolist extends Component {
         }
     }
 
-    deleteItem(item) {
-        // let test = document.querySelector(item);
-        const arrayItems = this.state.items;
-        const indexItem = arrayItems.indexOf(item);
-        arrayItems.splice(indexItem, 1);
-        this.setState({
-            items: arrayItems
-        })
+    deleteItem(item, identity) {
+        let currentItem = document.querySelector('.' + identity);
+        currentItem.classList.add('fade-out');
+        // console.log(test);
+        setTimeout(() => {
+            const arrayItems = this.state.items;
+            const indexItem = arrayItems.indexOf(item);
+            arrayItems.splice(indexItem, 1);
+            this.setState({
+                items: arrayItems
+            })
+        }, 500);
     }
 
     deleteAll(event) {
@@ -74,8 +78,9 @@ class Todolist extends Component {
 
     renderItems() {
         return this.state.items.map((item) => {
+            let identity = 'item-' + item;
             return(
-                <ListGroupItem key={item}>{item}<Button close onClick={this.deleteItem.bind(this, item)} /></ListGroupItem>
+                <ListGroupItem className={identity + ' fade-in'} key={item}>{item}<Button close onClick={this.deleteItem.bind(this, item, identity)} /></ListGroupItem>
             );
         });
     }

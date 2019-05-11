@@ -46,21 +46,47 @@ body {
 
 .list > ul > li {
   display: flex;
+  width: 300px;
   justify-content: space-between;
-  /* min-width: 300px; */
-  animation-duration: 0.8s;
-  animation-name: item;
-  animation-fill-mode: forwards;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-@keyframes item {
+.fade-in {
+  animation-duration: 0.8s;
+  animation-name: fade-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
   from {
     width: 0px;
+    opacity: 0;
   }
   to {
     width: 300px;
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation-duration: 0.8s;
+  animation-name: fade-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    width: 300px;
+  }
+  
+  10% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 0px;
+    opacity: 0;
   }
 }
 
