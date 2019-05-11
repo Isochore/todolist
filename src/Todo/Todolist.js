@@ -19,17 +19,26 @@ class Todolist extends Component {
 
     addItem(event) {
         event.preventDefault();
-        if(this.state.userInput !== '' && this.state.items.indexOf(this.state.userInput) === -1) {
-            this.setState({
-                items: [...this.state.items, this.state.userInput],
-                userInput: ''
-            })
-        } else if(this.state.items.indexOf(this.state.userInput) !== -1) {
+        const reg = /[^a-zA-Z_0-9áàâäãéèêëíìîïóòôöõúùûüýÿÁÀÂÄÃÉÈÊËÍÌÎÏÓÒÔÖÕÚÙÛÜÝ\s]/;
+        if(this.state.userInput.match(reg) === null && this.state.userInput.match(/[^\s]/) !== null) {
+            if(this.state.userInput !== '' && this.state.items.indexOf(this.state.userInput) === -1) {
+                this.setState({
+                    items: [...this.state.items, this.state.userInput],
+                    userInput: ''
+                })
+            } else if(this.state.items.indexOf(this.state.userInput) !== -1) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Cet objet existe déjà',
+                    showConfirmButton: false,
+                    timer: 1200
+                })
+            }
+        } else {
             Swal.fire({
                 type: 'error',
-                title: 'Cet objet existe déjà',
-                showConfirmButton: false,
-                timer: 1200
+                title: "L'objet contient des caratères interdits",
+                text: "L'objet doit être constitué de lettres et de chiffres.",
             })
         }
     }
@@ -37,7 +46,6 @@ class Todolist extends Component {
     deleteItem(item, identity) {
         let currentItem = document.querySelector('.' + identity);
         currentItem.classList.add('fade-out');
-        // console.log(test);
         setTimeout(() => {
             const arrayItems = this.state.items;
             const indexItem = arrayItems.indexOf(item);
@@ -53,7 +61,7 @@ class Todolist extends Component {
         if(this.state.items.length > 0) {
             Swal.fire({
                 title: 'Êtes vous sûr(e) ?',
-                text: "Tous les objets de la liste seront définitivement supprimés",
+                text: "Tous les objets de la liste seront définitivement supprimés.",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
